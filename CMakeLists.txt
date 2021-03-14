@@ -2,14 +2,18 @@ cmake_minimum_required(VERSION 3.17)
 project(MyGame)
 
 set(CMAKE_CXX_STANDARD 20)
+set(PROJECT_NAME MyGame)
+add_executable(${PROJECT_NAME} src/main.cpp)
+
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+
 
 add_subdirectory(external/glfw)
-add_executable(MyGame main.cpp)
-target_link_libraries(MyGame glfw)
+target_link_libraries(${PROJECT_NAME} glfw)
 
-find_package(OpenGL REQUIRED)
-
+add_subdirectory(external/glad)
+target_link_libraries(${PROJECT_NAME} glad)
